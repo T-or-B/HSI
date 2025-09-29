@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+build/
+*/build/
+
+# Local config
+local.properties
+
+# IntelliJ / Android Studio
+*.iml
+.idea/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+
+# Android Studio
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystore
+*.jks
+*.keystore
+
+# Google Services (optional — add back if you need them)
+google-services.json
+GoogleService-Info.plist
+
+# Android Profiling
+*.hprof
+
+# JetBrains output
+out/
