@@ -1,6 +1,6 @@
 package ai.revealtech.hsinterview.screens.characters
 
-import ai.revealtech.hsinterview.data.networking.models.Character
+import ai.revealtech.hsinterview.domain.models.Character
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
