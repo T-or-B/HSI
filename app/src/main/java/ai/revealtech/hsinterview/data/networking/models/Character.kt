@@ -1,4 +1,4 @@
-package ai.revealtech.hsinterview.screens.characters
+package ai.revealtech.hsinterview.data.networking.models
 
 import kotlinx.serialization.Serializable
 

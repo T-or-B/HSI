@@ -1,6 +1,6 @@
-package ai.revealtech.hsinterview.networking.di
+package ai.revealtech.hsinterview.data.networking.di
 
-import ai.revealtech.hsinterview.screens.characters.CharactersApiService
+import ai.revealtech.hsinterview.data.networking.CharactersApiService
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module

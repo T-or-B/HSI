@@ -1,5 +1,6 @@
-package ai.revealtech.hsinterview.screens.characters
+package ai.revealtech.hsinterview.data.networking
 
+import ai.revealtech.hsinterview.data.networking.models.CharactersResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
