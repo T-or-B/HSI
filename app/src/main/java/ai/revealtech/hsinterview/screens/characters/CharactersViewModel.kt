@@ -1,7 +1,7 @@
 package ai.revealtech.hsinterview.screens.characters
 
 import ai.revealtech.hsinterview.data.RickAndMortyRepository
-import ai.revealtech.hsinterview.data.networking.models.Character
+import ai.revealtech.hsinterview.domain.models.Character
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
