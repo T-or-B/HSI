@@ -1,5 +1,7 @@
 package ai.revealtech.hsinterview.screens.characters
 
+import ai.revealtech.hsinterview.data.RickAndMortyRepository
+import ai.revealtech.hsinterview.data.networking.models.Character
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CharactersViewModel @Inject constructor(
-        private val repository: CharactersRepository
+        private val repository: RickAndMortyRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(CharactersUiState())

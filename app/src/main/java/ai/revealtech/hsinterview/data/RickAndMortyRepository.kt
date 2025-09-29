@@ -1,12 +1,14 @@
-package ai.revealtech.hsinterview.screens.characters
+package ai.revealtech.hsinterview.data
 
+import ai.revealtech.hsinterview.data.networking.CharactersApiService
+import ai.revealtech.hsinterview.data.networking.models.CharactersResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class CharactersRepository @Inject constructor(
+class RickAndMortyRepository @Inject constructor(
         private val apiService: CharactersApiService
 ) {
 
