@@ -1,4 +1,4 @@
-package ai.revealtech.hsinterview.screens.characters
+package ai.revealtech.hsinterview.screens.character.search
 
 import ai.revealtech.hsinterview.data.RickAndMortyRepository
 import ai.revealtech.hsinterview.domain.models.Character
