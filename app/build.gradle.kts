@@ -2,6 +2,7 @@ plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
+  alias(libs.plugins.kotlin.serialization)
   alias(libs.plugins.dagger.hilt.android)
   alias(libs.plugins.ksp)
 }
@@ -52,6 +53,13 @@ dependencies {
   // Hilt dependencies
   implementation(libs.dagger.hilt.android)
   ksp(libs.dagger.hilt.compiler)
+
+  // Network dependencies
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.kotlinx.serialization)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.okhttp)
+  implementation(libs.okhttp.logging)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
