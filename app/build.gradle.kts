@@ -49,9 +49,11 @@ dependencies {
   implementation(libs.androidx.ui.graphics)
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
+  implementation(libs.material.icons.extended)
 
   // Hilt dependencies
   implementation(libs.dagger.hilt.android)
+  implementation(libs.androidx.hilt.navigation.compose)
   ksp(libs.dagger.hilt.compiler)
 
   // Network dependencies
@@ -60,6 +62,9 @@ dependencies {
   implementation(libs.kotlinx.serialization.json)
   implementation(libs.okhttp)
   implementation(libs.okhttp.logging)
+
+  // Image loading
+  implementation(libs.coil.compose)
 
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
