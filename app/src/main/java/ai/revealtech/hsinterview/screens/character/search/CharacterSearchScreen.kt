@@ -1,6 +1,7 @@
-package ai.revealtech.hsinterview.screens.characters
+package ai.revealtech.hsinterview.screens.character.search
 
 import ai.revealtech.hsinterview.domain.models.Character
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -14,6 +15,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
@@ -178,7 +180,7 @@ private fun FilterChip(
 private fun CharactersList(
         characters: List<Character>,
         isLoadingMore: Boolean,
-        listState: androidx.compose.foundation.lazy.LazyListState
+        listState: LazyListState
 ) {
     LazyColumn(
         state = listState,
@@ -222,7 +224,7 @@ private fun CharacterCard(
             verticalAlignment = Alignment.CenterVertically
         ) {
             // Character Image
-            androidx.compose.foundation.Image(
+            Image(
                 painter = rememberAsyncImagePainter(
                     ImageRequest.Builder(LocalContext.current)
                         .data(character.image)
