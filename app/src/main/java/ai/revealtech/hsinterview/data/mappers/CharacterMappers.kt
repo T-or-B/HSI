@@ -5,9 +5,9 @@ import ai.revealtech.hsinterview.data.networking.models.Location as NetworkLocat
 import ai.revealtech.hsinterview.data.networking.models.CharactersResponse as NetworkCharactersResponse
 import ai.revealtech.hsinterview.data.networking.models.Info as NetworkInfo
 import ai.revealtech.hsinterview.domain.models.Character as DomainCharacter
-import ai.revealtech.hsinterview.domain.models.Location as DomainLocation
-import ai.revealtech.hsinterview.domain.models.CharactersResponse as DomainCharactersResponse
-import ai.revealtech.hsinterview.domain.models.Info as DomainInfo
+import ai.revealtech.hsinterview.domain.models.CharacterLocation as DomainLocation
+import ai.revealtech.hsinterview.domain.models.CharactersCollection as DomainCharactersResponse
+import ai.revealtech.hsinterview.domain.models.CollectionInfo as DomainInfo
 
 fun NetworkCharacter.toDomain(): DomainCharacter {
     return DomainCharacter(
@@ -35,8 +35,8 @@ fun NetworkLocation.toDomain(): DomainLocation {
 
 fun NetworkCharactersResponse.toDomain(): DomainCharactersResponse {
     return DomainCharactersResponse(
-        info = info.toDomain(),
-        results = results.map { it.toDomain() }
+        collectionInfo = info.toDomain(),
+        characterList = results.map { it.toDomain() }
     )
 }
 

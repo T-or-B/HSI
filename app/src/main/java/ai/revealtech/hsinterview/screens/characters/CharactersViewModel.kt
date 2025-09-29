@@ -42,10 +42,10 @@ class CharactersViewModel @Inject constructor(
                             val currentCharacters = if (page == 1) emptyList() else _uiState.value.characters
                             _uiState.value = _uiState.value.copy(
                                 isLoading = false,
-                                characters = currentCharacters + response.results,
+                                characters = currentCharacters + response.characterList,
                                 currentPage = page,
-                                totalPages = response.info.pages,
-                                hasNextPage = response.info.next != null,
+                                totalPages = response.collectionInfo.pages,
+                                hasNextPage = response.collectionInfo.next != null,
                                 error = null
                             )
                         },
