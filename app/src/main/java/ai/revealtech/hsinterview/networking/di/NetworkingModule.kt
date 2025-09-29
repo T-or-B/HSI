@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.networking.di
 
+import ai.revealtech.hsinterview.screens.characters.CharactersApiService
 import retrofit2.Retrofit
 import retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -56,5 +57,11 @@ object NetworkingModule {
             .client(okHttpClient)
             .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideCharactersApiService(retrofit: Retrofit): CharactersApiService {
+        return retrofit.create(CharactersApiService::class.java)
     }
 }
