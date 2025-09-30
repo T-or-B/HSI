@@ -2,6 +2,7 @@ package ai.revealtech.hsinterview.data
 
 import ai.revealtech.hsinterview.data.networking.CharactersApiService
 import ai.revealtech.hsinterview.data.mappers.toDomain
+import ai.revealtech.hsinterview.domain.models.Character as DomainCharacter
 import ai.revealtech.hsinterview.domain.models.CharactersCollection as DomainCharactersResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -25,6 +26,15 @@ class RickAndMortyRepository @Inject constructor(
             emit(Result.success(response.toDomain()))
         } catch (e: Exception) {
             emit(Result.failure(e))
+        }
+    }
+
+    suspend fun getCharacterById(characterId: Int): Result<DomainCharacter> {
+        return try {
+            val character = apiService.getCharacterById(characterId)
+            Result.success(character.toDomain())
+        } catch (e: Exception) {
+            Result.failure(e)
         }
     }
 }
