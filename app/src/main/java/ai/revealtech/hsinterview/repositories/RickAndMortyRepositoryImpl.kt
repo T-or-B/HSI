@@ -25,18 +25,32 @@ class RickAndMortyRepositoryImpl @Inject constructor(
             species: String?,
             gender: String?
     ): Flow<Result<CharactersCollection>> = flow {
-        val response = try {
+        val response = getCharactersFromRemote(page, name, status, species, gender)
+        emit(response)
+    }.flowOn(Dispatchers.IO)
+
+    private suspend fun getCharactersFromRemote(
+            page: Int,
+            name: String?,
+            status: String?,
+            species: String?,
+            gender: String?
+    ): Result<CharactersCollection> {
+        return try {
             apiService.getCharacters(page, name, status, species, gender)
                 .toDomain()
                 .let { Result.success(it) }
         } catch (e: Exception) {
-            Result.failure<CharactersCollection>(e)
+            Result.failure(e)
         }
-        emit(response)
-    }.flowOn(Dispatchers.IO)
+    }
 
     override suspend fun getCharacterById(characterId: Int): Result<Character> = withContext(Dispatchers.IO) {
-        try {
+        getCharacterByIdFromRemote(characterId)
+    }
+    
+    private suspend fun getCharacterByIdFromRemote(characterId: Int): Result<Character> {
+        return try {
             val character = apiService.getCharacterById(characterId)
             Result.success(character.toDomain())
         } catch (e: Exception) {
