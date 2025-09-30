@@ -1,6 +1,7 @@
 package ai.revealtech.hsinterview.screens.character.details
 
 import ai.revealtech.hsinterview.domain.models.Character
+import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -10,11 +11,13 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
@@ -46,6 +49,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -62,6 +66,7 @@ fun CharacterDetailsScreen(
         viewModel: CharacterDetailsViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val configuration = LocalConfiguration.current
 
     LaunchedEffect(characterId) {
         viewModel.loadCharacterDetails(characterId)
@@ -100,7 +105,11 @@ fun CharacterDetailsScreen(
                 }
 
                 uiState.character != null -> {
-                    CharacterDetailsContent(character = uiState.character!!)
+                    if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                        CharacterDetailsContentLandscape(character = uiState.character!!)
+                    } else {
+                        CharacterDetailsContent(character = uiState.character!!)
+                    }
                 }
             }
         }
@@ -130,6 +139,36 @@ private fun CharacterDetailsContent(character: Character) {
 
         // Additional Details
         AdditionalDetailsSection(character = character)
+    }
+}
+
+@Composable
+private fun CharacterDetailsContentLandscape(character: Character) {
+    Row(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(16.dp)
+    ) {
+        // Character Image and Basic Info
+        CharacterHeaderLandscape(character = character)
+
+        // Status and Species, Location Info, Episodes, Additional Details
+        Column(
+            modifier = Modifier
+                .fillMaxHeight()
+                .verticalScroll(rememberScrollState())
+                .weight(1f),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            BasicInfoSection(character = character)
+
+            LocationSection(character = character)
+
+            EpisodesSection(character = character)
+
+            AdditionalDetailsSection(character = character)
+        }
     }
 }
 
@@ -166,6 +205,50 @@ private fun CharacterHeader(character: Character) {
             Text(
                 text = character.name,
                 style = MaterialTheme.typography.headlineMedium,
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onPrimaryContainer
+            )
+        }
+    }
+}
+
+@Composable
+private fun CharacterHeaderLandscape(character: Character) {
+    Card(
+        modifier = Modifier
+            .width(200.dp)
+            .fillMaxHeight(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(24.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.Center
+        ) {
+            Image(
+                painter = rememberAsyncImagePainter(
+                    ImageRequest.Builder(LocalContext.current)
+                        .data(character.image)
+                        .crossfade(true)
+                        .build()
+                ),
+                contentDescription = character.name,
+                modifier = Modifier
+                    .size(150.dp)
+                    .clip(CircleShape),
+                contentScale = ContentScale.Crop
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+            Text(
+                text = character.name,
+                style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onPrimaryContainer
