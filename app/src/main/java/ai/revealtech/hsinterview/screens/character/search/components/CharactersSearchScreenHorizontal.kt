@@ -46,9 +46,23 @@ fun CharactersSearchScreenHorizontal(
         onStatusSelected: (String?) -> Unit,
         onCharacterClick: (Int) -> Unit,
         onLoadNextPage: () -> Unit,
-        onRetry: () -> Unit
+        onRetry: () -> Unit,
+        scrollIndex: Int = 0,
+        scrollOffset: Int = 0,
+        onScrollPositionChanged: (Int, Int) -> Unit = { _, _ -> }
 ) {
-    val gridState = rememberLazyGridState()
+    val gridState = rememberLazyGridState(
+        initialFirstVisibleItemIndex = scrollIndex,
+        initialFirstVisibleItemScrollOffset = scrollOffset
+    )
+
+    // Track scroll position changes
+    LaunchedEffect(gridState.firstVisibleItemIndex, gridState.firstVisibleItemScrollOffset) {
+        onScrollPositionChanged(
+            gridState.firstVisibleItemIndex,
+            gridState.firstVisibleItemScrollOffset
+        )
+    }
 
     // Infinite scrolling for grid
     val shouldLoadMore by remember {

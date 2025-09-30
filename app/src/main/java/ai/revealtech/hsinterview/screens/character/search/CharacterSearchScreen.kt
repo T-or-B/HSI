@@ -24,6 +24,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +43,10 @@ fun CharactersSearchScreen(
     val configuration = LocalConfiguration.current
     val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
+    // Save scroll position across configuration changes
+    var scrollIndex by rememberSaveable { mutableStateOf(0) }
+    var scrollOffset by rememberSaveable { mutableStateOf(0) }
+
     if (isLandscape) {
         CharactersSearchScreenHorizontal(
             uiState = uiState,
@@ -53,7 +58,13 @@ fun CharactersSearchScreen(
             onStatusSelected = { viewModel.filterByStatus(it) },
             onCharacterClick = onCharacterClick,
             onLoadNextPage = { viewModel.loadNextPage() },
-            onRetry = { viewModel.retry() }
+            onRetry = { viewModel.retry() },
+            scrollIndex = scrollIndex,
+            scrollOffset = scrollOffset,
+            onScrollPositionChanged = { index, offset ->
+                scrollIndex = index
+                scrollOffset = offset
+            }
         )
     } else {
         CharactersSearchScreenVertical(
@@ -66,7 +77,13 @@ fun CharactersSearchScreen(
             onStatusSelected = { viewModel.filterByStatus(it) },
             onCharacterClick = onCharacterClick,
             onLoadNextPage = { viewModel.loadNextPage() },
-            onRetry = { viewModel.retry() }
+            onRetry = { viewModel.retry() },
+            scrollIndex = scrollIndex,
+            scrollOffset = scrollOffset,
+            onScrollPositionChanged = { index, offset ->
+                scrollIndex = index
+                scrollOffset = offset
+            }
         )
     }
 }
