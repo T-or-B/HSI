@@ -1,6 +1,10 @@
-package ai.revealtech.hsinterview.screens.character.search
+package ai.revealtech.hsinterview.screens.character.search.components
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.search.CharacterLoadingState
+import ai.revealtech.hsinterview.screens.character.search.CharacterSearchErrorState
+import ai.revealtech.hsinterview.screens.character.search.CharactersUiState
+import ai.revealtech.hsinterview.screens.character.search.FilterChip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
