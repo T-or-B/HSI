@@ -1,4 +1,4 @@
-package ai.revealtech.hsinterview.screens.character.details
+package ai.revealtech.hsinterview.screens.character.details.components
 
 import ai.revealtech.hsinterview.domain.models.Character
 import ai.revealtech.hsinterview.screens.character.getCharacterStatusColor
@@ -35,7 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun BasicInfoSection(character: ai.revealtech.hsinterview.domain.models.Character) {
+fun BasicInfoSection(character: Character) {
     InfoCard(
         title = "Basic Information",
         icon = Icons.Default.Person
@@ -56,7 +56,7 @@ fun BasicInfoSection(character: ai.revealtech.hsinterview.domain.models.Characte
 }
 
 @Composable
-fun LocationSection(character: ai.revealtech.hsinterview.domain.models.Character) {
+fun LocationSection(character: Character) {
     InfoCard(
         title = "Location Details",
         icon = Icons.Default.LocationOn
@@ -78,7 +78,7 @@ fun LocationSection(character: ai.revealtech.hsinterview.domain.models.Character
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun EpisodesSection(character: ai.revealtech.hsinterview.domain.models.Character) {
+fun EpisodesSection(character: Character) {
     InfoCard(
         title = "Episodes (${character.episode.size})",
         icon = Icons.Default.Tv

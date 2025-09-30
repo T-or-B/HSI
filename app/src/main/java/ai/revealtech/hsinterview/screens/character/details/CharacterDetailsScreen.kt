@@ -1,6 +1,12 @@
 package ai.revealtech.hsinterview.screens.character.details
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.details.components.AdditionalDetailsSection
+import ai.revealtech.hsinterview.screens.character.details.components.BasicInfoSection
+import ai.revealtech.hsinterview.screens.character.details.components.CharacterDetailsHeaderLandscape
+import ai.revealtech.hsinterview.screens.character.details.components.CharacterHeaderVertical
+import ai.revealtech.hsinterview.screens.character.details.components.EpisodesSection
+import ai.revealtech.hsinterview.screens.character.details.components.LocationSection
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

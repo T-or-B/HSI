@@ -1,4 +1,4 @@
-package ai.revealtech.hsinterview.screens.character.details
+package ai.revealtech.hsinterview.screens.character.details.components
 
 import ai.revealtech.hsinterview.domain.models.Character
 import androidx.compose.foundation.Image
