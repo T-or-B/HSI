@@ -1,6 +1,8 @@
 package ai.revealtech.hsinterview.screens.character.search
 
 import ai.revealtech.hsinterview.screens.character.getCharacterStatusColor
+import ai.revealtech.hsinterview.screens.character.search.components.CharactersSearchScreenHorizontal
+import ai.revealtech.hsinterview.screens.character.search.components.CharactersSearchScreenVertical
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

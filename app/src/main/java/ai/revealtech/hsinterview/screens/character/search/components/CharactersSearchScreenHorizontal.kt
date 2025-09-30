@@ -1,6 +1,10 @@
-package ai.revealtech.hsinterview.screens.character.search
+package ai.revealtech.hsinterview.screens.character.search.components
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.search.CharacterLoadingState
+import ai.revealtech.hsinterview.screens.character.search.CharacterSearchErrorState
+import ai.revealtech.hsinterview.screens.character.search.CharactersUiState
+import ai.revealtech.hsinterview.screens.character.search.FilterChip
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,6 +15,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.grid.rememberLazyGridState
@@ -193,7 +198,7 @@ private fun StatusFilterColumn(
 private fun CharactersGrid(
         characters: List<Character>,
         isLoadingMore: Boolean,
-        gridState: androidx.compose.foundation.lazy.grid.LazyGridState,
+        gridState: LazyGridState,
         onCharacterClick: (Int) -> Unit
 ) {
     LazyVerticalGrid(

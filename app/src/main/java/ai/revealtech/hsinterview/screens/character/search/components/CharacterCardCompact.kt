@@ -1,6 +1,7 @@
-package ai.revealtech.hsinterview.screens.character.search
+package ai.revealtech.hsinterview.screens.character.search.components
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.search.StatusDot
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
