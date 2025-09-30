@@ -1,7 +1,9 @@
 package ai.revealtech.hsinterview.data.networking
 
+import ai.revealtech.hsinterview.data.networking.models.Character
 import ai.revealtech.hsinterview.data.networking.models.CharactersResponse
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface CharactersApiService {
@@ -14,4 +16,7 @@ interface CharactersApiService {
             @Query("species") species: String? = null,
             @Query("gender") gender: String? = null
     ): CharactersResponse
+
+    @GET("character/{id}")
+    suspend fun getCharacterById(@Path("id") id: Int): Character
 }

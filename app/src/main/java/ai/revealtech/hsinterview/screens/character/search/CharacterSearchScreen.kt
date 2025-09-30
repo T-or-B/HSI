@@ -52,6 +52,7 @@ import coil.request.ImageRequest
 
 @Composable
 fun CharactersScreen(
+        onCharacterClick: (Int) -> Unit = {},
         viewModel: CharactersViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -126,7 +127,8 @@ fun CharactersScreen(
                 CharactersList(
                     characters = uiState.characters,
                     isLoadingMore = uiState.isLoading,
-                    listState = listState
+                    listState = listState,
+                    onCharacterClick = onCharacterClick
                 )
             }
         }
@@ -180,14 +182,15 @@ private fun FilterChip(
 private fun CharactersList(
         characters: List<Character>,
         isLoadingMore: Boolean,
-        listState: LazyListState
+        listState: LazyListState,
+        onCharacterClick: (Int) -> Unit
 ) {
     LazyColumn(
         state = listState,
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(characters) { character ->
-            CharacterCard(character = character)
+            CharacterCard(character = character, onCharacterClick = onCharacterClick)
         }
 
         if (isLoadingMore) {
@@ -207,10 +210,13 @@ private fun CharactersList(
 
 @Composable
 private fun CharacterCard(
-        character: Character
+        character: Character,
+        onCharacterClick: (Int) -> Unit
 ) {
     Card(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onCharacterClick(character.id) },
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
