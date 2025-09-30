@@ -54,6 +54,8 @@ fun CharactersSearchScreenVertical(
 
     TrackScrollPositionChanges(
         scrollState = listState,
+        scrollIndex = scrollIndex,
+        scrollOffset = scrollOffset
     ) { index, offset ->
         onScrollPositionChanged(index, offset)
     }
