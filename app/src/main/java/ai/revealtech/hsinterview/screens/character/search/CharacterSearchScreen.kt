@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.search
 
+import ai.revealtech.hsinterview.screens.character.getCharacterStatusColor
 import android.content.res.Configuration
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -24,7 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -71,16 +71,12 @@ fun CharactersSearchScreen(
 
 @Composable
 fun StatusDot(status: String) {
-    val color = when (status.lowercase()) {
-        "alive" -> Color.Green
-        "dead" -> Color.Red
-        else -> Color.Gray
-    }
+    val statusColor = getCharacterStatusColor(status)
 
     Box(
         modifier = Modifier
             .size(8.dp)
-            .background(color, CircleShape)
+            .background(statusColor, CircleShape)
     )
 }
 
