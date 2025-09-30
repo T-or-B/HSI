@@ -1,11 +1,10 @@
 package ai.revealtech.hsinterview.screens.character.search
 
-import ai.revealtech.hsinterview.data.RickAndMortyRepository
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.domain.repositories.RickAndMortyRepository
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,7 +32,7 @@ class CharactersViewModel @Inject constructor(
             species: String? = null,
             gender: String? = null
     ) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
 
             repository.getCharacters(page, name, status, species, gender)
