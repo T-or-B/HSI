@@ -60,6 +60,9 @@ dependencies {
   implementation(libs.androidx.hilt.navigation.compose)
   ksp(libs.dagger.hilt.compiler)
 
+  // Navigation
+  implementation(libs.androidx.navigation.compose)
+
   // Network dependencies
   implementation(libs.retrofit)
   implementation(libs.retrofit.kotlinx.serialization)
