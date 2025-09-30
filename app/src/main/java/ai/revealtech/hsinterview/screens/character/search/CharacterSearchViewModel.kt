@@ -25,7 +25,7 @@ class CharactersViewModel @Inject constructor(
         loadCharacters()
     }
 
-    fun loadCharacters(
+    private fun loadCharacters(
             page: Int = 1,
             name: String? = null,
             status: String? = null,

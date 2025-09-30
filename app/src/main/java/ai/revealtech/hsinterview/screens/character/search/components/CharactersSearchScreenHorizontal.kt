@@ -1,6 +1,7 @@
 package ai.revealtech.hsinterview.screens.character.search.components
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.TrackScrollPositionChanges
 import ai.revealtech.hsinterview.screens.character.search.CharacterLoadingState
 import ai.revealtech.hsinterview.screens.character.search.CharacterSearchErrorState
 import ai.revealtech.hsinterview.screens.character.search.CharactersUiState
@@ -33,7 +34,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -57,12 +57,10 @@ fun CharactersSearchScreenHorizontal(
         initialFirstVisibleItemScrollOffset = scrollOffset
     )
 
-    // Track scroll position changes
-    LaunchedEffect(Unit) {
-        snapshotFlow { gridState.firstVisibleItemIndex to gridState.firstVisibleItemScrollOffset }
-            .collect { (index, offset) ->
-                onScrollPositionChanged(index, offset)
-            }
+    TrackScrollPositionChanges(
+        scrollState = gridState
+    ) { index, offset ->
+        onScrollPositionChanged(index, offset)
     }
 
     // Infinite scrolling for grid

@@ -1,6 +1,7 @@
 package ai.revealtech.hsinterview.screens.character.search.components
 
 import ai.revealtech.hsinterview.domain.models.Character
+import ai.revealtech.hsinterview.screens.character.TrackScrollPositionChanges
 import ai.revealtech.hsinterview.screens.character.search.CharacterLoadingState
 import ai.revealtech.hsinterview.screens.character.search.CharacterSearchErrorState
 import ai.revealtech.hsinterview.screens.character.search.CharactersUiState
@@ -51,12 +52,10 @@ fun CharactersSearchScreenVertical(
         initialFirstVisibleItemScrollOffset = scrollOffset
     )
 
-    // Track scroll position changes
-    LaunchedEffect(listState.firstVisibleItemIndex, listState.firstVisibleItemScrollOffset) {
-        onScrollPositionChanged(
-            listState.firstVisibleItemIndex,
-            listState.firstVisibleItemScrollOffset
-        )
+    TrackScrollPositionChanges(
+        scrollState = listState,
+    ) { index, offset ->
+        onScrollPositionChanged(index, offset)
     }
 
     // Infinite scrolling
