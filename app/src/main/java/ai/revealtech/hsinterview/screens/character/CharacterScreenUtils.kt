@@ -19,9 +19,17 @@ fun getCharacterStatusColor(status: String): Color {
 @Composable
 fun TrackScrollPositionChanges(
         scrollState: ScrollableState,
+        scrollIndex: Int,
+        scrollOffset: Int,
         onScrollPositionChanged: (index: Int, offset: Int) -> Unit
 ) {
     LaunchedEffect(scrollState) {
+        // Scroll to initial position if needed
+        when (scrollState) {
+            is LazyGridState -> if (scrollIndex > 0 || scrollOffset > 0) scrollState.scrollToItem(scrollIndex, scrollOffset)
+            is LazyListState -> if (scrollIndex > 0 || scrollOffset > 0) scrollState.scrollToItem(scrollIndex, scrollOffset)
+        }
+
         snapshotFlow {
             when (scrollState) {
                 is LazyGridState -> scrollState.firstVisibleItemIndex to scrollState.firstVisibleItemScrollOffset

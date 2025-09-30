@@ -58,7 +58,9 @@ fun CharactersSearchScreenHorizontal(
     )
 
     TrackScrollPositionChanges(
-        scrollState = gridState
+        scrollState = gridState,
+        scrollIndex = scrollIndex,
+        scrollOffset = scrollOffset
     ) { index, offset ->
         onScrollPositionChanged(index, offset)
     }
