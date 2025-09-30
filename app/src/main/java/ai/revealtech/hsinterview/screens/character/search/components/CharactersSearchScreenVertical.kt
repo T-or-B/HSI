@@ -41,9 +41,23 @@ fun CharactersSearchScreenVertical(
         onStatusSelected: (String?) -> Unit,
         onCharacterClick: (Int) -> Unit,
         onLoadNextPage: () -> Unit,
-        onRetry: () -> Unit
+        onRetry: () -> Unit,
+        scrollIndex: Int = 0,
+        scrollOffset: Int = 0,
+        onScrollPositionChanged: (Int, Int) -> Unit = { _, _ -> }
 ) {
-    val listState = rememberLazyListState()
+    val listState = rememberLazyListState(
+        initialFirstVisibleItemIndex = scrollIndex,
+        initialFirstVisibleItemScrollOffset = scrollOffset
+    )
+
+    // Track scroll position changes
+    LaunchedEffect(listState.firstVisibleItemIndex, listState.firstVisibleItemScrollOffset) {
+        onScrollPositionChanged(
+            listState.firstVisibleItemIndex,
+            listState.firstVisibleItemScrollOffset
+        )
+    }
 
     // Infinite scrolling
     val shouldLoadMore by remember {
