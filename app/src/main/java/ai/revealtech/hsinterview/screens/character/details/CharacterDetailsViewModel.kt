@@ -5,6 +5,7 @@ import ai.revealtech.hsinterview.domain.models.Character
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -20,7 +21,7 @@ class CharacterDetailsViewModel @Inject constructor(
     val uiState: StateFlow<CharacterDetailsUiState> = _uiState.asStateFlow()
 
     fun loadCharacterDetails(characterId: Int) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             _uiState.value = _uiState.value.copy(
                 isLoading = true,
                 error = null
