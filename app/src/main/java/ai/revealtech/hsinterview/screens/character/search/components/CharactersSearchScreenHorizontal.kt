@@ -33,6 +33,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -57,11 +58,11 @@ fun CharactersSearchScreenHorizontal(
     )
 
     // Track scroll position changes
-    LaunchedEffect(gridState.firstVisibleItemIndex, gridState.firstVisibleItemScrollOffset) {
-        onScrollPositionChanged(
-            gridState.firstVisibleItemIndex,
-            gridState.firstVisibleItemScrollOffset
-        )
+    LaunchedEffect(Unit) {
+        snapshotFlow { gridState.firstVisibleItemIndex to gridState.firstVisibleItemScrollOffset }
+            .collect { (index, offset) ->
+                onScrollPositionChanged(index, offset)
+            }
     }
 
     // Infinite scrolling for grid
