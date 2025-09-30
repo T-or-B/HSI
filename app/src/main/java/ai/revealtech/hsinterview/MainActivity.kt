@@ -12,7 +12,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import ai.revealtech.hsinterview.screens.character.search.CharactersScreen
 import ai.revealtech.hsinterview.ui.theme.HsInterviewTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +24,7 @@ class MainActivity : ComponentActivity() {
       HsInterviewTheme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
           Box(modifier = Modifier.padding(innerPadding)) {
-            CharactersScreen()
+            AppNavigation()
           }
         }
       }

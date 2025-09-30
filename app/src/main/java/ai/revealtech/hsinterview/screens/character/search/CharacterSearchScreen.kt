@@ -46,14 +46,14 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 
 @Composable
-fun CharactersScreen(
+fun CharactersSearchScreen(
         onCharacterClick: (Int) -> Unit = {},
-        viewModel: CharactersViewModel = viewModel()
+        viewModel: CharactersViewModel = hiltViewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
