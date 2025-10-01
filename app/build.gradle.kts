@@ -1,7 +1,12 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
+  alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.dagger.hilt.android)
+  alias(libs.plugins.ksp)
 }
 
 android {
@@ -28,8 +33,10 @@ android {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
   }
-  kotlinOptions {
-    jvmTarget = "11"
+  kotlin {
+    compilerOptions {
+      jvmTarget.set(JvmTarget.JVM_11)
+    }
   }
   buildFeatures {
     compose = true
@@ -46,7 +53,31 @@ dependencies {
   implementation(libs.androidx.ui.graphics)
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
+  implementation(libs.material.icons.extended)
+
+  // Hilt dependencies
+  implementation(libs.dagger.hilt.android)
+  implementation(libs.androidx.hilt.navigation.compose)
+  ksp(libs.dagger.hilt.compiler)
+
+  // Navigation
+  implementation(libs.androidx.navigation.compose)
+
+  // Network dependencies
+  implementation(libs.retrofit)
+  implementation(libs.retrofit.kotlinx.serialization)
+  implementation(libs.kotlinx.serialization.json)
+  implementation(libs.okhttp)
+  implementation(libs.okhttp.logging)
+
+  // Image loading
+  implementation(libs.coil.compose)
+
   testImplementation(libs.junit)
+  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.9.0")
+  testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+  testImplementation("org.mockito:mockito-core:5.14.2")
+  testImplementation("app.cash.turbine:turbine:1.2.0")
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
   androidTestImplementation(platform(libs.androidx.compose.bom))
