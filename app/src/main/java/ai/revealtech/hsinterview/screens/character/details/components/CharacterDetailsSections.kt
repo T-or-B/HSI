@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.details.components
 
+import ai.revealtech.hsinterview.R
 import ai.revealtech.hsinterview.domain.models.Character
 import ai.revealtech.hsinterview.screens.character.getCharacterStatusColor
 import androidx.compose.foundation.background
@@ -31,26 +32,27 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun BasicInfoSection(character: Character) {
     InfoCard(
-        title = "Basic Information",
+        title = stringResource(R.string.basic_information),
         icon = Icons.Default.Person
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             InfoRow(
-                label = "Status",
+                label = stringResource(R.string.status),
                 value = character.status,
                 statusColor = getCharacterStatusColor(character.status)
             )
-            InfoRow(label = "Species", value = character.species)
+            InfoRow(label = stringResource(R.string.species), value = character.species)
             if (character.type.isNotBlank()) {
-                InfoRow(label = "Type", value = character.type)
+                InfoRow(label = stringResource(R.string.type), value = character.type)
             }
-            InfoRow(label = "Gender", value = character.gender)
+            InfoRow(label = stringResource(R.string.gender), value = character.gender)
         }
     }
 }
@@ -58,17 +60,17 @@ fun BasicInfoSection(character: Character) {
 @Composable
 fun LocationSection(character: Character) {
     InfoCard(
-        title = "Location Details",
+        title = stringResource(R.string.location_details),
         icon = Icons.Default.LocationOn
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
             InfoRow(
-                label = "Origin",
+                label = stringResource(R.string.origin),
                 value = character.origin.name,
                 icon = Icons.Default.Public
             )
             InfoRow(
-                label = "Last Known Location",
+                label = stringResource(R.string.last_known_location_label),
                 value = character.location.name,
                 icon = Icons.Default.LocationOn
             )
@@ -80,7 +82,7 @@ fun LocationSection(character: Character) {
 @Composable
 fun EpisodesSection(character: Character) {
     InfoCard(
-        title = "Episodes (${character.episode.size})",
+        title = stringResource(R.string.episodes_count, character.episode.size),
         icon = Icons.Default.Tv
     ) {
         if (character.episode.isNotEmpty()) {
@@ -96,7 +98,7 @@ fun EpisodesSection(character: Character) {
                             onClick = { },
                             label = {
                                 Text(
-                                    text = "Episode $episodeNumber",
+                                    text = stringResource(R.string.episode_number, episodeNumber),
                                     style = MaterialTheme.typography.bodySmall
                                 )
                             }
@@ -104,7 +106,7 @@ fun EpisodesSection(character: Character) {
                     }
                 if (character.episode.size > 20) {
                     Text(
-                        text = "+${character.episode.size - 20} more episodes",
+                        text = stringResource(R.string.more_episodes, character.episode.size - 20),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
                         modifier = Modifier.padding(8.dp)
@@ -113,7 +115,7 @@ fun EpisodesSection(character: Character) {
             }
         } else {
             Text(
-                text = "No episode information available",
+                text = stringResource(R.string.no_episode_information),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
@@ -124,17 +126,17 @@ fun EpisodesSection(character: Character) {
 @Composable
 fun AdditionalDetailsSection(character: Character) {
     InfoCard(
-        title = "Additional Details",
+        title = stringResource(R.string.additional_details),
         icon = Icons.Default.Person
     ) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Text(
-                text = "Character ID: ${character.id}",
+                text = stringResource(R.string.character_id, character.id),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )
             Text(
-                text = "Created: ${character.created.substringBefore("T")}",
+                text = stringResource(R.string.created_date, character.created.substringBefore("T")),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
             )

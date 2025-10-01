@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.search
 
+import ai.revealtech.hsinterview.R
 import ai.revealtech.hsinterview.screens.character.getCharacterStatusColor
 import ai.revealtech.hsinterview.screens.character.search.components.CharactersSearchScreenHorizontal
 import ai.revealtech.hsinterview.screens.character.search.components.CharactersSearchScreenVertical
@@ -30,6 +31,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -112,7 +114,7 @@ fun CharacterLoadingState() {
         ) {
             CircularProgressIndicator()
             Text(
-                text = "Loading characters...",
+                text = stringResource(R.string.loading_characters),
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -133,7 +135,7 @@ fun CharacterSearchErrorState(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Oops! Something went wrong",
+                text = stringResource(R.string.error_something_went_wrong),
                 style = MaterialTheme.typography.headlineSmall,
                 fontWeight = FontWeight.Bold
             )
@@ -143,7 +145,7 @@ fun CharacterSearchErrorState(
                 color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
             )
             Button(onClick = onRetry) {
-                Text("Retry")
+                Text(stringResource(R.string.retry))
             }
         }
     }

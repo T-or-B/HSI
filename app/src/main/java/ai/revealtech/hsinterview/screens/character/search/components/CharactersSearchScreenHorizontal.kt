@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.search.components
 
+import ai.revealtech.hsinterview.R
 import ai.revealtech.hsinterview.domain.models.Character
 import ai.revealtech.hsinterview.screens.character.TrackScrollPositionChanges
 import ai.revealtech.hsinterview.screens.character.search.CharacterLoadingState
@@ -36,6 +37,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
@@ -96,7 +98,7 @@ fun CharactersSearchScreenHorizontal(
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
             Text(
-                text = "Search Characters",
+                text = stringResource(R.string.search_characters_title),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold
             )
@@ -105,11 +107,11 @@ fun CharactersSearchScreenHorizontal(
             OutlinedTextField(
                 value = searchQuery,
                 onValueChange = onSearchQueryChange,
-                label = { Text("Search") },
+                label = { Text(stringResource(R.string.search_label)) },
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Default.Search,
-                        contentDescription = "Search"
+                        contentDescription = stringResource(R.string.search_content_description)
                     )
                 },
                 modifier = Modifier.fillMaxWidth(),
@@ -117,7 +119,7 @@ fun CharactersSearchScreenHorizontal(
             )
 
             Text(
-                text = "Filter by Status",
+                text = stringResource(R.string.filter_by_status),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -138,7 +140,7 @@ fun CharactersSearchScreenHorizontal(
                         verticalArrangement = Arrangement.spacedBy(4.dp)
                     ) {
                         Text(
-                            text = "Results",
+                            text = stringResource(R.string.results_label),
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.onPrimaryContainer.copy(alpha = 0.7f)
                         )
@@ -193,10 +195,10 @@ private fun StatusFilterColumn(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         val statuses = listOf(
-            "All" to null,
-            "Alive" to "alive",
-            "Dead" to "dead",
-            "Unknown" to "unknown"
+            stringResource(R.string.status_all) to null,
+            stringResource(R.string.status_alive) to "alive",
+            stringResource(R.string.status_dead) to "dead",
+            stringResource(R.string.status_unknown) to "unknown"
         )
 
         statuses.forEach { (label, status) ->

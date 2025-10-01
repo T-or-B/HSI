@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.search.components
 
+import ai.revealtech.hsinterview.R
 import ai.revealtech.hsinterview.domain.models.Character
 import ai.revealtech.hsinterview.screens.character.search.StatusDot
 import androidx.compose.foundation.Image
@@ -23,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -85,7 +87,7 @@ fun CharacterCard(
                 ) {
                     StatusDot(status = character.status)
                     Text(
-                        text = "${character.status} - ${character.species}",
+                        text = "${character.status}${stringResource(R.string.status_separator)}${character.species}",
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f)
                     )
@@ -94,7 +96,7 @@ fun CharacterCard(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = "Last known location:",
+                    text = stringResource(R.string.last_known_location),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f)
                 )

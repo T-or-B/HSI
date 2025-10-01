@@ -1,5 +1,6 @@
 package ai.revealtech.hsinterview.screens.character.details
 
+import ai.revealtech.hsinterview.R
 import ai.revealtech.hsinterview.domain.models.Character
 import ai.revealtech.hsinterview.screens.character.details.components.AdditionalDetailsSection
 import ai.revealtech.hsinterview.screens.character.details.components.BasicInfoSection
@@ -38,6 +39,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -60,12 +62,12 @@ fun CharacterDetailsScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(text = uiState.character?.name ?: "Character Details") },
+                title = { Text(text = uiState.character?.name ?: stringResource(R.string.character_details_title)) },
                 navigationIcon = {
                     IconButton(onClick = onNavigateBack) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back"
+                            contentDescription = stringResource(R.string.back_content_description)
                         )
                     }
                 },
@@ -173,7 +175,7 @@ fun CharacterDetailsLoadingState() {
         ) {
             CircularProgressIndicator()
             Text(
-                text = "Loading character details...",
+                text = stringResource(R.string.loading_character_details),
                 style = MaterialTheme.typography.bodyMedium
             )
         }
@@ -201,7 +203,7 @@ fun CharacterDetailsErrorState(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = "Oops! Something went wrong",
+                    text = stringResource(R.string.error_something_went_wrong),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onErrorContainer
@@ -213,7 +215,7 @@ fun CharacterDetailsErrorState(
                     textAlign = TextAlign.Center
                 )
                 Button(onClick = onRetry) {
-                    Text("Try Again")
+                    Text(stringResource(R.string.try_again))
                 }
             }
         }

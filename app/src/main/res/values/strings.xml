@@ -1,3 +1,50 @@
 <resources>
     <string name="app_name">hs interview</string>
+
+    <!-- Character Details Screen -->
+    <string name="character_details_title">Character Details</string>
+    <string name="back_content_description">Back</string>
+    <string name="loading_character_details">Loading character details…</string>
+    <string name="error_something_went_wrong">Oops! Something went wrong</string>
+    <string name="try_again">Try Again</string>
+
+    <!-- Character Search Screen -->
+    <string name="search_characters_label">Search characters</string>
+    <string name="search_label">Search</string>
+    <string name="search_content_description">Search</string>
+    <string name="loading_characters">Loading characters…</string>
+    <string name="retry">Retry</string>
+    <string name="search_characters_title">Search Characters</string>
+    <string name="filter_by_status">Filter by Status</string>
+    <string name="results_label">Results</string>
+
+    <!-- Status Filters -->
+    <string name="status_all">All</string>
+    <string name="status_alive">Alive</string>
+    <string name="status_dead">Dead</string>
+    <string name="status_unknown">Unknown</string>
+
+    <!-- Character Card -->
+    <string name="status_separator">-</string>
+    <string name="last_known_location">Last known location:</string>
+
+    <!-- Character Details Sections -->
+    <string name="basic_information">Basic Information</string>
+    <string name="status">Status</string>
+    <string name="species">Species</string>
+    <string name="type">Type</string>
+    <string name="gender">Gender</string>
+
+    <string name="location_details">Location Details</string>
+    <string name="origin">Origin</string>
+    <string name="last_known_location_label">Last Known Location</string>
+
+    <string name="episodes_count">Episodes (%d)</string>
+    <string name="episode_number">Episode %s</string>
+    <string name="more_episodes">+%d more episodes</string>
+    <string name="no_episode_information">No episode information available</string>
+
+    <string name="additional_details">Additional Details</string>
+    <string name="character_id">Character ID: %d</string>
+    <string name="created_date">Created: %s</string>
 </resources>
