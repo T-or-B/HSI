@@ -84,17 +84,19 @@ fun CharacterDetailsScreen(
                 }
 
                 uiState.error != null -> {
+                    val errorMessage = uiState.error
                     CharacterDetailsErrorState(
-                        error = uiState.error!!,
+                        error = errorMessage ?: "Unknown error occurred",
                         onRetry = { viewModel.loadCharacterDetails(characterId) }
                     )
                 }
 
                 uiState.character != null -> {
+                    val character = uiState.character ?: return@Box
                     if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                        CharacterDetailsContentLandscape(character = uiState.character!!)
+                        CharacterDetailsContentLandscape(character = character)
                     } else {
-                        CharacterDetailsContent(character = uiState.character!!)
+                        CharacterDetailsContent(character = character)
                     }
                 }
             }
